@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "'/Users/sreekarsbs/Desktop/bingebot/.next/server/app'",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
