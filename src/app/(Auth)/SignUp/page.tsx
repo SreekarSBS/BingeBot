@@ -33,7 +33,7 @@ const SignUp = () => {
             <div className="text-3xl m-16 p-16 w-1/2 h-96  mx-auto my-auto fixed top-0 bottom-0 left-0 right-0">
                 <div className={`${inter.className} font-semibold`}>Welcome!</div>
                 <div className={`${lusitana.className} font-light pt-1`}> Create your password to start your membership.</div>
-                <p className={`${inter.className} text-lg font-extralight pt-1`}>Enter your password and you'll be watching in no time.</p>
+                <p className={`${inter.className} text-lg font-extralight pt-1`}>Enter your password and you&#39;ll be watching in no time.</p>
                 <form onSubmit={(e) => e.preventDefault()} className="relative   text-white xl:w-3/4  text-lg" >
                 <input ref = {email} type = "email" placeholder="Email address " className=" bg-slate-300 xl:w-full mt-6  rounded-lg xl:h-8 2xl:h-10 my-4 p-2 text-gray-600  "  />
                 <div className="flex items-center xl:w-full   ">
