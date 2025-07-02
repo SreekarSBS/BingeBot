@@ -33,7 +33,7 @@ import { useEffect, useRef, useState } from "react";
 
         <Image className="mask-t-from-background mask-b-from-background " fill src= "https://assets.nflxext.com/ffe/siteui/vlv3/75b0ed49-75ab-4a63-bd45-37bc2c95cb73/web/IN-en-20250623-TRIFECTA-perspective_ae5833b7-6ce5-4e88-853e-014f38c506f1_large.jpg" alt = "Netflix-bg" />
               
-         <div className="2xl:w-1/4 w-96 mx-auto left-0 right-0 my-auto top-0 bottom-0 absolute xl:h-[510px] 2xl:h-[560px] rounded-3xl text-white bg-black/60  ">
+         <div className="2xl:w-[400px] w-96 mx-auto left-0 right-0 my-auto top-0 bottom-0 absolute xl:h-[510px] 2xl:h-[560px] rounded-3xl text-white bg-black/60  ">
           <div className=" w-3/4 h-8/12 xl:m-6 xl:p-2  2xl:p-4 ">
               <div className="2xl:text-2xl xl:text-2xl font-light 2xl:m-0 xl:mt-6 font-serif  ">Sign { isSignup? 'Up' : 'In'}</div>
               <form onSubmit={(e) => e.preventDefault()} className="relative xl:w-80  text-white xl:py-8  2xl:text-lg" >
