@@ -1,10 +1,10 @@
 'use client'
 import Image from "next/image"
 import Link from "next/link"
-import { useRef } from "react"
+// import { useRef } from "react"
 
 const RegForm = () => {
-  const emailId = useRef<HTMLInputElement>(null);
+  // const emailId = useRef<HTMLInputElement>(null);
  
   return (
     <div className="relative w-full h-screen bg-black overflow-hidden">
