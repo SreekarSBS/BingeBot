@@ -1,9 +1,9 @@
 "use client"
-import { validateData } from "@/utils/validate";
+import { validateData } from "@/app/lib/utils/validate";
 import Image from "next/image"
-import Link from "next/link";
+import Link from "next/link"
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react"
 
  const SignIn = () => {
      const [showPassword,setShowPassword] = useState(false);
@@ -24,8 +24,6 @@ import { useEffect, useRef, useState } from "react";
       // optional chaining fallback
        const message =  validateData( email?.current?.value ?? "" ,password?.current?.value ?? "" )
        setErrorMessage(message)
-       
-      
     }
      const path = !showPassword? "https://www.svgrepo.com/show/348139/eye-crossed.svg" : "https://www.svgrepo.com/show/365364/eye-thin.svg";
     
