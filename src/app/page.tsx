@@ -1,7 +1,11 @@
+'use client'
 import Image from "next/image"
 import Link from "next/link"
+import { useRef } from "react"
 
-const SignUp = () => {
+const RegForm = () => {
+  const emailId = useRef<HTMLInputElement>(null);
+ 
   return (
     <div className="relative w-full h-screen bg-black overflow-hidden">
       <Link href="/SignIn">
@@ -27,10 +31,11 @@ const SignUp = () => {
                 <div className="flex  ">
                  
                   <input type = "text" placeholder="Email address" className="bg-gray-700 mr-2 w-2/3 rounded-lg h-14 2xl:h-18 my-4 p-2 text-white relative" />
+                  <Link href = "/SignUp " className="flex items-center justify-center w-1/3 ml-2 h-14 2xl:h-18 my-4 p-2 cursor-pointer font-serif hover:text-white text-red-50 hover:bg-red-900/30 duration-1000 rounded-xl   z-50 right-96 bg-red-900/80 text-shadow-black text-xl  font-bold ">
                   
-                  <button className=" w-1/3 ml-2 h-14 2xl:h-18 my-4 p-2 cursor-pointer font-serif hover:text-white text-red-50 hover:bg-red-900/30 duration-1000 rounded-xl   z-50 right-96 bg-red-900/80 text-shadow-black text-xl  font-bold " >
-        Get Started
-        </button>
+                  Get Started
+       
+        </Link>
                 </div>
                 </div>
              </div>
@@ -38,4 +43,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default RegForm
