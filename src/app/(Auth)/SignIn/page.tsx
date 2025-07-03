@@ -22,12 +22,13 @@ import { useSearchParams } from "next/navigation";
      setShowPassword(!showPassword)
     }
     const searchParams = useSearchParams();
-    const emailID = searchParams.get("email") ;
+    const emailID = searchParams.get("email") ?? "" ;
     const handleSign = () =>{
+      const inputEmail =email?.current?.value ?? ""
       // optional chaining fallback
       //  const message =  validateData( email?.current?.value ?? "" ,password?.current?.value ?? "" )
       //  setErrorMessage(message)
-      signInWithEmailAndPassword(auth, emailID || email?.current?.value   , password?.current?.value ?? "")
+      signInWithEmailAndPassword(auth, emailID || inputEmail ,password?.current?.value ?? "")
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
