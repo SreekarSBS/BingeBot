@@ -1,11 +1,44 @@
 'use client'
 import Image from "next/image"
 import Link from "next/link"
-
-
+import { useRef, useState } from "react";
+import { validateEmail } from "./lib/utils/validate";
+import { useRouter } from "next/navigation";
+import { auth } from "./lib/utils/firebase";
 const RegForm = () => {
+  
+  const [errorMessage, setErrorMessage] = useState("");
  
+  
+  const router = useRouter(); 
+  //added null 
+  const emailId = useRef<HTMLInputElement>(null);
+
+  const handleRedirect = () => {
+    const email = emailId.current?.value || "";
+    const isValid = validateEmail(email) === "";
+  
+     setErrorMessage(isValid ? "" : "Please enter a valid email ID");
+  
+    if (!isValid) {
+     
+      router.push("/");
+    return;
+    }
+
+
+  
+    const userEmail = auth.currentUser?.email ;
+    if (userEmail === email) {
+     
+      router.push(`/SignIn?email=${email}`);
+    }
+
+    else  router.push(`/SignUp?email=${email}`);
+  };
+  
  
+  
   return (
     <div className="relative w-full h-screen bg-black overflow-hidden">
       <Link href="/SignIn">
@@ -30,13 +63,15 @@ const RegForm = () => {
                 </div>
                 <div className="flex  ">
                  
-                  <input type = "text" placeholder="Email address" className="bg-gray-700 mr-2 w-2/3 rounded-lg h-14 2xl:h-18 my-4 p-2 text-white relative" />
-                  <Link href = "/SignUp " className="flex items-center justify-center w-1/3 ml-2 h-14 2xl:h-18 my-4 p-2 cursor-pointer font-serif hover:text-white text-red-50 hover:bg-red-900/30 duration-1000 rounded-xl   z-50 right-96 bg-red-900/80 text-shadow-black text-xl  font-bold ">
+                  <input ref = {emailId} type = "text" placeholder="Email address" className="bg-gray-700 mr-2 w-2/3 rounded-lg h-14 2xl:h-18 my-4 p-2 text-white relative" />
+                  <div 
+                    onClick={handleRedirect} className="flex items-center justify-center w-1/3 ml-2 h-14 2xl:h-18 my-4 p-2 cursor-pointer font-serif hover:text-white text-red-50 hover:bg-red-600/70 duration-1000 rounded-xl   z-50 right-96 bg-red-900/80 text-shadow-black text-xl  font-bold ">
                   
                   Get Started 
        
-        </Link>
+        </div>
                 </div>
+                {errorMessage && <p className="font-2xl text-red-600 font-bold">Please enter a valid email ID</p>}
                 </div>
              </div>
     </div>

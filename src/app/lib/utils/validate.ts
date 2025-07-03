@@ -7,3 +7,10 @@ if(!isEmailValid) errorMessage1 += "valid Email Id "
 if(!isPasswordValid) errorMessage2 += " ,valid Password"
 return "Please enter a "+ errorMessage1 +  errorMessage2; 
 }
+
+export const validateEmail = (email : string ) => {
+    const isEmailValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)
+    if(!isEmailValid) return "Please enter a valid Email Id"
+    else return ""
+    
+    }

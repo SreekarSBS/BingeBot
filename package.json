@@ -7,16 +7,19 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export" : "next export"
+    "export": "next export"
   },
   "dependencies": {
     "firebase": "^11.10.0",
     "next": "15.3.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
+    "validator": "^13.15.15"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@reduxjs/toolkit": "^2.8.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

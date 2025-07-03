@@ -1,9 +1,11 @@
 "use client"
-import { validateData } from "@/app/lib/utils/validate";
+
+import { signInWithEmailAndPassword } from "firebase/auth";
 import Image from "next/image"
 import Link from "next/link"
-
+import { auth } from "@/app/lib/utils/firebase";
 import { useEffect, useRef, useState } from "react"
+import { useSearchParams } from "next/navigation";
 
  const SignIn = () => {
      const [showPassword,setShowPassword] = useState(false);
@@ -19,11 +21,26 @@ import { useEffect, useRef, useState } from "react"
     const handleClick = () => {
      setShowPassword(!showPassword)
     }
-    
+    const searchParams = useSearchParams();
+    const emailID = searchParams.get("email") ;
     const handleSign = () =>{
       // optional chaining fallback
-       const message =  validateData( email?.current?.value ?? "" ,password?.current?.value ?? "" )
-       setErrorMessage(message)
+      //  const message =  validateData( email?.current?.value ?? "" ,password?.current?.value ?? "" )
+      //  setErrorMessage(message)
+      signInWithEmailAndPassword(auth, emailID || email?.current?.value   , password?.current?.value ?? "")
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log("User signed in successfully:", user);
+    
+    // ...
+  })
+  .catch((error) => {
+    // const errorCode = error.code;
+    // const errorMessage = error.message;
+    setErrorMessage("SignIn failed " + error.message);
+  });
+
     }
      const path = !showPassword? "https://www.svgrepo.com/show/348139/eye-crossed.svg" : "https://www.svgrepo.com/show/365364/eye-thin.svg";
     
@@ -35,7 +52,7 @@ import { useEffect, useRef, useState } from "react"
           <div className=" w-3/4 h-8/12 xl:m-6 xl:p-2  2xl:p-4 ">
               <div className="2xl:text-2xl xl:text-2xl font-light 2xl:m-0 xl:mt-6 font-serif  ">Sign { isSignup? 'Up' : 'In'}</div>
               <form onSubmit={(e) => e.preventDefault()} className="relative xl:w-80  text-white xl:py-8  2xl:text-lg" >
-                <input ref = {email} type = "text" placeholder="Email address " className="bg-gray-700  xl:w-80  rounded-lg xl:h-14 2xl:h-15 my-4 p-2 text-white  "  />
+                <input ref = {email} type = "text" defaultValue={`${emailID || ""}`} placeholder={`${emailID || "Email address"}`} className="bg-gray-700  xl:w-80  rounded-lg xl:h-14 2xl:h-15 my-4 p-2 text-white  "  />
                 <div className="flex items-center xl:w-80 ">
                 <input ref = {password} type = {`${showPassword ? "text" : "password" }`} placeholder="Password" className="w-full rounded-lg xl:h-14 2xl:h-15 my-4 p-2 text-white bg-gray-700" />
                 <div onClick={handleClick} className="p-4 hover:bg-red-600 bg-gray-50 cursor-pointer rounded-4xl 2xl:ml-84 my-4 border-2 right-2 absolute">
