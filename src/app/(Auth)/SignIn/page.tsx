@@ -6,6 +6,7 @@ import Link from "next/link"
 import { auth } from "@/app/lib/utils/firebase";
 import { useEffect, useRef, useState } from "react"
 import { useSearchParams } from "next/navigation";
+import { Suspense } from 'react'
 
  const SignIn = () => {
      const [showPassword,setShowPassword] = useState(false);
@@ -45,7 +46,7 @@ import { useSearchParams } from "next/navigation";
     }
      const path = !showPassword? "https://www.svgrepo.com/show/348139/eye-crossed.svg" : "https://www.svgrepo.com/show/365364/eye-thin.svg";
     
- return <div className="relative w-full h-screen bg-black overflow-hidden">
+ return    <Suspense><div className="relative w-full h-screen bg-black overflow-hidden">
 
         <Image className="mask-t-from-background mask-b-from-background " fill src= "https://assets.nflxext.com/ffe/siteui/vlv3/75b0ed49-75ab-4a63-bd45-37bc2c95cb73/web/IN-en-20250623-TRIFECTA-perspective_ae5833b7-6ce5-4e88-853e-014f38c506f1_large.jpg" alt = "Netflix-bg" />
               
@@ -69,7 +70,7 @@ import { useSearchParams } from "next/navigation";
              </form>
           </div>
         </div>
-      </div>
+      </div></Suspense>
 }
 
 export default SignIn
