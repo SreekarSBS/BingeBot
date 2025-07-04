@@ -1,11 +1,15 @@
 'use client'
 import Image from "next/image"
 import Link from "next/link"
-import { useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import { validateEmail } from "./lib/utils/validate";
 import { useRouter } from "next/navigation";
 import { auth } from "./lib/utils/firebase";
+// import {  onAuthStateChanged } from "firebase/auth";
+// import { useDispatch } from "react-redux";
+// import { addUser, removeUser } from "./lib/utils/userSlice";
 const RegForm = () => {
+  // const dispatch = useDispatch();
   
   const [errorMessage, setErrorMessage] = useState("");
  
@@ -13,6 +17,21 @@ const RegForm = () => {
   const router = useRouter(); 
   //added null 
   const emailId = useRef<HTMLInputElement>(null);
+
+//   useEffect(() => {
+// onAuthStateChanged(auth, (user) => {
+//   if (user) {
+    
+//     const {uid } = user;
+//     dispatch(addUser({uid : uid, email: user.email }));
+//     router.push("/Browse");
+//   } else {
+//    dispatch(removeUser());vb 
+//    router.push("/");
+//   }
+// });
+//   },[emailId])
+
 
   const handleRedirect = () => {
     const email = emailId.current?.value || "";
