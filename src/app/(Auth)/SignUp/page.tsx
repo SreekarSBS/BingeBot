@@ -7,13 +7,14 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/app/lib/utils/firebase";
+import { useRouter } from "next/navigation";
 
 
 
 const SignUp = () => {
      const [showPassword,setShowPassword] = useState(false);
      
-    
+      const router = useRouter();
          const password = useRef<HTMLInputElement>(null);
          const [errorMessage,setErrorMessage] = useState("")
         useEffect(() => {
@@ -39,7 +40,7 @@ const SignUp = () => {
    // Signed up 
    const user = userCredential.user;
    console.log("User signed up successfully:", user);
-   
+   router.push("/Browse");
    // ...
  })
  .catch((error) => {

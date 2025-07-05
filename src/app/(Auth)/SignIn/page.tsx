@@ -5,8 +5,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { auth } from "@/app/lib/utils/firebase";
 import { useEffect, useRef, useState } from "react"
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from 'react'
+
 
  const SignIn = () => {
      const [showPassword,setShowPassword] = useState(false);
@@ -14,6 +15,7 @@ import { Suspense } from 'react'
      const email = useRef<HTMLInputElement>(null);
      const password = useRef<HTMLInputElement>(null);
      const [errorMessage,setErrorMessage] = useState("")
+     const router = useRouter();
     useEffect(() => {
     setShowPassword(false)
     setIsSignUp(false);
@@ -34,7 +36,7 @@ import { Suspense } from 'react'
     // Signed in 
     const user = userCredential.user;
     console.log("User signed in successfully:", user);
-    
+    router.push("/Browse")
     // ...
   })
   .catch((error) => {
