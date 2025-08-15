@@ -8,12 +8,54 @@ import {
     CardTitle,
   } from "../components/ui/card"
 import { Button } from "../components/ui/button"
-import { useState } from "react";
+import { useRef, useState } from "react";
+import validate from "../utils/validate";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
     const [isSignUp , setIsSignUp] = useState(false);
+    const [errorMessage,setErrorMessage] = useState("");
+    const email = useRef(null);
+    const password = useRef(null)
+    const handleSubmit = () => {
+       setErrorMessage(validate(email.current.value,password.current.value));
+       if(errorMessage) return;
 
+        if(isSignUp){
+            // SignUp
+            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log(user);
+    
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(setErrorMessage(errorCode+errorMessage));
+    
+  });
 
+        }
+        else{
+            // SignIn
+            signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user);
+    
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMessage("Invalid credentials, please try again");
+  });
+        }
+    }
   return (
 <div
   className="hero min-h-screen "
@@ -40,20 +82,27 @@ const Login = () => {
   }
 
      <input
-         
+         ref = {email}
          type="email"
         placeholder="Email"
         className="w-full p-2 my-4 bg-gray-600 border border-zinc-400  rounded"
      />
       <input
-        type="email"
+        ref={password}
+        type="password"
         placeholder="Password"
         className="w-full p-2 my-4  bg-gray-600 border border-zinc-400 rounded"
      />
-    <Button className={"mx-auto my-4 w-full   bg-red-600 hover:zoom-in cursor-pointer"} variant="outline">{ isSignUp ? "Sign Up" : "Sign In"}</Button>
- 
+    <Button 
+     onClick = {handleSubmit}
+     className={"mx-auto my-4 w-full   bg-red-600 hover:zoom-in cursor-pointer"} 
+     variant="outline">
+        { isSignUp ? "Sign Up" : "Sign In"}
+    </Button>
+    <p className="text-red-400">{errorMessage}</p>
   </CardContent>
   <CardFooter>
+   
   { isSignUp ?
          <p className="font-extralight text-lg">Already have an account?  
             <span onClick={() => setIsSignUp(false)} className="text-red-500 mx-1 cursor-pointer">
