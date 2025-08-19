@@ -6,7 +6,7 @@ import VideoTitle from './VideoTitle'
 const MainContainer = () => {
   
   return (
-    <div >
+    <div className=' relative' >
       <VideoTitle />
       <VideoBackground />
     </div>
