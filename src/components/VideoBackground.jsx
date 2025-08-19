@@ -1,19 +1,17 @@
-import { useSelector } from "react-redux";
-import { API_OPTIONS, VIDEO_URL } from "../utils/constants";
-import React, { useEffect, useState } from "react";
-import useGetMovieTrailer from "../hooks/useGetMovieTrailer";
 
+import useGetMovieTrailer from "../hooks/useGetMovieTrailer";
+import { useSelector } from "react-redux";
 
 const VideoBackground = () => {
-    
-  const [trailerKey, setTrailerKey] = useState();
-  useGetMovieTrailer(setTrailerKey);
+    useGetMovieTrailer()
+    const videoKey = useSelector((store) => store.movies?.videoKey);
+  
+
   return (
-    <div>
+    <div className="">
       <iframe
-        width="560"
-        height="315"
-        src={`https://www.youtube.com/embed/${trailerKey}?si=OD4hXI5wdCNsC6V1`}
+        className="aspect-video  "
+        src={`https://www.youtube.com/embed/${videoKey}?autoplay=1`}
         title="YouTube video player"
      
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

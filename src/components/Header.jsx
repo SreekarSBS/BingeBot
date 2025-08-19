@@ -19,7 +19,7 @@ const Header = () => {
           //    navigate("/");
           }).catch((error) => {
             navigate("/error"); 
-            console.log(error);
+            
             
           });
     }
@@ -37,11 +37,11 @@ const Header = () => {
             photoURL
           };
           dispatch(addUser(userStore));
-          console.log(user);
+          
           
           navigate("/Browse");
         } else {
-          console.log("User is signed out");
+          
           dispatch(removeUser())
           navigate("/");
         }
@@ -52,7 +52,7 @@ const Header = () => {
     },[])
 
     return <>
-    <div className="navbar bg-transparent absolute shadow-sm">
+    <div className="navbar p-15 bg-transparent absolute shadow-sm  bg-gradient-to-b from-black">
   <div className="flex-1">
     <a className="btn btn-ghost  text-xl">
     <img 
