@@ -8,27 +8,26 @@ import {
     CardTitle,
   } from "../components/ui/card"
 import { Button } from "../components/ui/button"
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import validate from "../utils/validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import Header from "./Header";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
-    const navigate = useNavigate();
-    const user = useSelector((store) => store.user);
+  
     const [isSignUp , setIsSignUp] = useState(false);
     const [errorMessage,setErrorMessage] = useState("");
     const email = useRef(null);
     const password = useRef(null)
     const name = useRef(null);
     const dispatch = useDispatch()
-    useEffect(() => {
-        if(user) navigate("/Browse");
-    },[user])
+    // useEffect(() => {
+    //     if(user) navigate("/Browse");
+    // },[user])
 
     const handleSubmit = () => {
        setErrorMessage(validate(email.current.value,password.current.value));
@@ -41,7 +40,7 @@ const Login = () => {
     // Signed up 
     const user = userCredential.user;
     updateProfile(user, {
-        displayName: name.current.value , photoURL: "https://img1.hotstarext.com/image/upload/w_200,h_200,c_fill/v2/feature/profile/38_jv.png"
+        displayName: name.current.value , photoURL: USER_AVATAR
       }).then(() => {
         const {uid,displayName,email,photoURL} = user;
               const userStore = {
@@ -51,7 +50,7 @@ const Login = () => {
                 photoURL
               };
               dispatch(addUser(userStore));
-        navigate("/Browse");
+        // navigate("/Browse");
       }).catch((error) => {
         setErrorMessage(error.message)
       });
@@ -73,12 +72,12 @@ const Login = () => {
 
     const user = userCredential.user;
     console.log(user);
-    navigate("/Browse");
+    // navigate("/Browse");
     // ...
   })
   .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
+  console.log(error);
+  
     setErrorMessage("Invalid credentials, please try again");
   });
         }

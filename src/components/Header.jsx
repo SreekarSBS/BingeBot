@@ -1,29 +1,62 @@
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../utils/firebase";
-import { signOut } from "firebase/auth";
-import { removeUser } from "../utils/userSlice";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { addUser, removeUser } from "../utils/userSlice";
+import { BINGE_LOGO } from "../utils/constants";
 
 
 
 const Header = () => {
     const user = useSelector((store) => store.user);
     const navigate = useNavigate()
-    const dispatch = useDispatch();
+     const dispatch = useDispatch();
     const handleLogOut = () => {
         signOut(auth).then(() => {
-           dispatch(removeUser())
-             navigate("/");
+          //  dispatch(removeUser())
+          //    navigate("/");
           }).catch((error) => {
             navigate("/error"); 
+            console.log(error);
+            
           });
     }
+
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, async(user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/auth.user
+          const {uid,displayName,email,photoURL} = user;
+          const userStore = {
+            uid,
+            displayName,
+            email,
+            photoURL
+          };
+          dispatch(addUser(userStore));
+          console.log(user);
+          
+          navigate("/Browse");
+        } else {
+          console.log("User is signed out");
+          dispatch(removeUser())
+          navigate("/");
+        }
+      });
+      // Cleanup subscription on unmount
+      // This is important to avoid memory leaks
+      return () => unsubscribe()
+    },[])
+
     return <>
-    <div className="navbar absolute bg-transparent shadow-sm">
+    <div className="navbar bg-transparent absolute shadow-sm">
   <div className="flex-1">
     <a className="btn btn-ghost  text-xl">
     <img 
-    src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Binge_logo.svg" 
+    src={BINGE_LOGO} 
     alt="Binge Logo"
      className="z-10 w-64 ml-44  px-8 py-6 mr-auto absolute" />
     </a>
