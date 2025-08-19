@@ -9,9 +9,9 @@ import { Provider } from 'react-redux'
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <Provider store = {appStore}>
     <App />
     </Provider>
-  </StrictMode>,
+  // </StrictMode>,
 )

@@ -59,7 +59,7 @@ const Login = () => {
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(setErrorMessage(errorCode+errorMessage));
+    setErrorMessage(errorCode+errorMessage)
     
   });
 
@@ -71,12 +71,12 @@ const Login = () => {
     // Signed in 
 
     const user = userCredential.user;
-    console.log(user);
+    // console.log(user);
     // navigate("/Browse");
     // ...
   })
   .catch((error) => {
-  console.log(error);
+  // console.log(error);
   
     setErrorMessage("Invalid credentials, please try again");
   });
