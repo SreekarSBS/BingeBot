@@ -52,7 +52,7 @@ const Header = () => {
     },[])
 
     return <>
-    <div className="navbar p-15 bg-transparent absolute shadow-sm  bg-gradient-to-b from-black">
+    <div className="navbar p-6 bg-transparent absolute shadow-sm  bg-gradient-to-b from-black">
   <div className="flex-1">
     <a className="btn btn-ghost  text-xl">
     <img 
@@ -61,9 +61,9 @@ const Header = () => {
      className="z-10 w-64 ml-44  px-8 py-6 mr-auto absolute" />
     </a>
   </div>
-  <div className="flex gap-2">
+  <div className="flex gap-2  z-50">
   <p className="input input-bordered text-amber-50 w-24 md:w-auto">{user?.displayName} </p>
-    {user && <div className="dropdown dropdown-end text-yellow-100">
+    {user && <div className="dropdown  dropdown-end text-yellow-100">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img

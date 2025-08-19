@@ -1,10 +1,10 @@
 import { addVideoKey } from '../utils/moviesSlice';
 import { API_OPTIONS } from '../utils/constants';
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 
-const useGetMovieTrailer = () => {
-    const currentMovie = useSelector((store) => store.movies?.currentMovie)
+const useGetMovieTrailer = (currentMovie) => {
+ 
     
   const dispatch = useDispatch()
   const fetchMovieTrailers = async () => {
