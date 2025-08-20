@@ -15,14 +15,14 @@ const VideoTitle = () => {
       })
       
   return (
-    <div className={`flex ${active ? "p-24" : "p-auto"} items-center transition-all duration-1000 bg-gradient-to-r from-black absolute aspect-video h-full  pointer-events-none`}>
+    <div className={`flex ${active ? "p-12" : "p-4 "} items-center w-2/3 transition-all duration-1000 bg-gradient-to-r from-black absolute aspect-video h-full `}>
         <div className='sm:w-2/3 w-screen  p-6  md:p-12 ' >
-      <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold'>{currentMovie?.title}</h1>
-      <div className="hidden sm:block sm:h-10 md:h-auto overflow-auto my-2">
-      <p className='w-1/2 text-xs sm:text-md my-4'>{currentMovie?.overview}</p>
+      <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-stretch-110% font-bold'>{currentMovie?.title}</h1>
+      <div className="hidden sm:block sm:h-10 md:h-24 lg:h-auto overflow-auto my-2">
+      <p className=' text-xs sm:text-md my-4'>{currentMovie?.overview}</p>
       </div>
-        <button className='bg-white text-black rounded-lg w-12 font-bold font-stretch-100% lg:w-16 xl:w-22 mx-1 h-10 '>Play</button>
-        <button className='border text-white bg-gray-600/50 font-bold font-stretch-100% rounded-lg w-22 mx-1 h-10'>More Info</button>
+        <button className='bg-white hover:bg-white/65 cursor-pointer text-black rounded-lg w-12 font-bold font-stretch-100% lg:w-16 xl:w-22 mx-1 h-10 '>Play</button>
+        <button className='border hover:bg-gray-600/15 cursor-pointer text-white bg-gray-600/50 font-bold font-stretch-100% rounded-lg w-22 mx-1 h-10'>More Info</button>
         </div>
       </div>
   )
