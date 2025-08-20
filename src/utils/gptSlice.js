@@ -8,7 +8,7 @@ const gptSlice = createSlice({
     },
     reducers : {
         toggleGptSearch : (state) => {
-            state.showGptSerch = !state.showGptSearch
+            state.showGptSearch = !state.showGptSearch
         }
     }
 })
