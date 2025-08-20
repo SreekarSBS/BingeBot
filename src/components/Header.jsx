@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
 import { BINGE_LOGO } from "../utils/constants";
 import GptToggle from "./GptToggle";
+import { toggleGptSearch } from "../utils/gptSlice";
 
 
 
@@ -52,20 +53,23 @@ const Header = () => {
       return () => unsubscribe()
     },[])
 
+    const handleGptToggle = () => {
+      dispatch(toggleGptSearch())
+    }
     return <>
-    <div className="navbar p-6 bg-transparent absolute shadow-sm  bg-gradient-to-b from-black">
+    <div className="navbar p-4 lg:p-6 bg-transparent absolute shadow-sm  bg-gradient-to-b from-black">
   <div className="flex-1">
     <a className="btn btn-ghost  text-xl">
     <img 
     src={BINGE_LOGO} 
     alt="Binge Logo"
-     className="z-10 w-64 ml-44  px-8 py-6 mr-auto absolute" />
+     className="z-10 w-32 lg:w-44 ml-44 py-6  absolute" />
     </a>
   </div>
   <div className="flex gap-2  z-50">
-  {user &&<> <GptToggle />
-  <p className="input input-bordered bg-black text-amber-50 w-24 md:w-auto">{user?.displayName} </p>
-     <div className="dropdown  dropdown-end text-yellow-100">
+  {user &&<div className="gap-4 flex"> <GptToggle handleGptToggle = {handleGptToggle} />
+ 
+     <div className="dropdown  dropdown-end ">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
@@ -76,17 +80,18 @@ const Header = () => {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li>
-          <a className="justify-between">
-            Profile
+        
+        <li ><a className="font-xl text-blue-500" > {user?.email}</a></li>
+        <li className="block sm:hidden">
+          <Link onClick={handleGptToggle} className="justify-between text-gray-50 hover:text-cyan-600">
+            Gpt Search
             <span className="badge">New</span>
-          </a>
+          </Link>
         </li>
-        <li><a>Settings</a></li>
-        <li onClick={handleLogOut}><a>Logout</a></li>
+        <li onClick={handleLogOut}><a className="text-gray-50 hover:text-amber-600">Logout</a></li>
       </ul>
     </div>
-   </>
+   </div>
     }
   </div>
 </div>
