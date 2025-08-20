@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
 import { BINGE_LOGO } from "../utils/constants";
+import GptToggle from "./GptToggle";
 
 
 
@@ -62,8 +63,9 @@ const Header = () => {
     </a>
   </div>
   <div className="flex gap-2  z-50">
-  <p className="input input-bordered text-amber-50 w-24 md:w-auto">{user?.displayName} </p>
-    {user && <div className="dropdown  dropdown-end text-yellow-100">
+  {user &&<> <GptToggle />
+  <p className="input input-bordered bg-black text-amber-50 w-24 md:w-auto">{user?.displayName} </p>
+     <div className="dropdown  dropdown-end text-yellow-100">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
@@ -83,7 +85,9 @@ const Header = () => {
         <li><a>Settings</a></li>
         <li onClick={handleLogOut}><a>Logout</a></li>
       </ul>
-    </div>}
+    </div>
+   </>
+    }
   </div>
 </div>
 </>
