@@ -1,11 +1,13 @@
 import { addAiringMovies } from '../utils/moviesSlice'
 import { API_OPTIONS, TV_SHOW_URL } from '../utils/constants'
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const useGetAiringToday = () => {
+    const airing_today = useSelector((store) => store.movies?.airing_today)
     const dispatch = useDispatch()
  useEffect(() => {
+    !airing_today &&
     fetchAiringToday()
  },[])
 

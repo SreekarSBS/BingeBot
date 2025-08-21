@@ -1,11 +1,13 @@
 import { addPopularMovies } from '../utils/moviesSlice'
 import { API_OPTIONS, TV_SHOW_URL } from '../utils/constants'
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import{  useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const useGetPopularMovies = () => {
     const dispatch = useDispatch()
+    const popularMovies = useSelector((store) => store.movies?.popularMovies)
  useEffect(() => {
+    !popularMovies &&
     fetchPopularMovies()
  },[])
 

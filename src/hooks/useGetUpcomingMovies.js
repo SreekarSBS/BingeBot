@@ -1,11 +1,13 @@
 import {  addUpcoming } from '../utils/moviesSlice'
 import { API_OPTIONS,  url } from '../utils/constants'
 import  { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const useGetUpcomingMovies = () => {
     const dispatch = useDispatch()
+    const upcoming = useSelector((store) => store.movies?.upcoming)
  useEffect(() => {
+    !upcoming &&
     fetchUpcoming()
  },[])
 
