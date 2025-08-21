@@ -32,3 +32,5 @@ export const SUPPORTED_LANGUAGES = [
     name: 'French',
   }
 ]
+
+export const GEMINI_API_KEY = "AIzaSyCfhulXxbDEyojOQOHQjOhxuJqEUTQy_sE"

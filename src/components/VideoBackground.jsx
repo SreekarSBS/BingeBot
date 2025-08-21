@@ -10,16 +10,16 @@ const VideoBackground = () => {
     if (!videoKey) return <div className="aspect-video bg-black">Hello</div>; // placeholder
 
   return (
-   
+   <div className="aspect-video h-full w-screen ">
       <iframe
-        className="aspect-video"
+        className=" h-full w-full absolute md:-mt-[100px]  "
         src={`https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1`}
         title="YouTube video player"
-     
+        
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
-      ></iframe>
+      ></iframe></div>
     
   );
 };

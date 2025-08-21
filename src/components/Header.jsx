@@ -62,9 +62,9 @@ const Header = () => {
 
   return (
     <>
-      <div className="navbar p-4 lg:p-6 bg-transparent absolute shadow-sm  bg-gradient-to-b from-black">
+      <div className="navbar p-4 lg:p-6 bg-transparent absolute z-50 shadow-sm  bg-gradient-to-b from-black">
         <div className="flex-1">
-          <a className="btn btn-ghost  text-xl">
+          <a  className="btn btn-ghost  text-xl">
             <img
               src={BINGE_LOGO}
               alt="Binge Logo"
@@ -75,13 +75,13 @@ const Header = () => {
         <div className="flex gap-2  z-50">
           {user && (
             <div className="gap-4 flex">
-              <select onChange={handleLanguageSelect}>
+             { showGptSearch && <select onChange={handleLanguageSelect}>
                 {SUPPORTED_LANGUAGES.map((lang) => (
                   <option key={lang.code} value={lang.code}>
                     {lang.name}{" "}
                   </option>
                 ))}
-              </select>
+              </select>}
               <GptToggle showGptSearch = {showGptSearch} handleGptToggle={handleGptToggle} />
 
               <div className="dropdown  dropdown-end ">
