@@ -1,11 +1,13 @@
 import { addTopRatedMovies } from '../utils/moviesSlice'
 import { API_OPTIONS,  url } from '../utils/constants'
 import  { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const useGetTopRatedMovies = () => {
     const dispatch = useDispatch()
+    const topRatedMovies = useSelector((store) => store.movies?.topRatedMovies)
  useEffect(() => {
+    !topRatedMovies &&
     fetchTopRatedMovies()
  },[])
 

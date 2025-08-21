@@ -1,11 +1,11 @@
 import { addVideoKey } from '../utils/moviesSlice';
 import { API_OPTIONS } from '../utils/constants';
 import React, { useEffect } from 'react'
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 
 const useGetMovieTrailer = (currentMovie) => {
  
-    
+    const videoKey = useSelector((store) => store.movies?.videoKey)
   const dispatch = useDispatch()
   const fetchMovieTrailers = async () => {
     try {
@@ -32,6 +32,7 @@ const useGetMovieTrailer = (currentMovie) => {
    
   };
   useEffect(() => {
+    !videoKey &&
     fetchMovieTrailers();
   }, [currentMovie?.id]);
   
