@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
 import { BINGE_LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 import GptToggle from "./GptToggle";
-import { toggleGptSearch } from "../utils/gptSlice";
+import { clearMovies, toggleGptSearch } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/languageSlice";
 
 const Header = () => {
@@ -43,6 +43,7 @@ const Header = () => {
         navigate("/Browse");
       } else {
         dispatch(removeUser());
+        dispatch(clearMovies())
         navigate("/");
       }
     });
